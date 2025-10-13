@@ -42,8 +42,8 @@ export const TooltipButton = ({
   return (
     <TooltipProvider delayDuration={delay}>
       <Tooltip>
-        <TooltipTrigger
-          className={disabled ? "cursor-not-allowed" : "cursor-pointer"}
+        <TooltipTrigger asChild
+          //className={disabled ? "cursor-not-allowed" : "cursor-pointer"}
         >
           <Button
             size={"icon"}
