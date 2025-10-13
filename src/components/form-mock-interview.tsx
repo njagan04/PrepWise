@@ -95,22 +95,25 @@ export const FormMockInterview = ({ initialData }: FormMockInterviewProps) => {
   };
 
   const generateAiResponse = async (data: FormData) => {
-    const prompt = `
-        As an experienced prompt engineer, generate a JSON array containing 5 technical interview questions along with detailed answers based on the following job information. Each object in the array should have the fields "question" and "answer", formatted as follows:
+    const prompt = `As an experienced prompt engineer, generate a JSON array containing 5 technical interview questions along with detailed answers based on the following job information. Each object in the array should have the fields "question" and "answer", formatted as follows:
 
-        [
-          { "question": "<Question text>", "answer": "<Answer text>" },
-          ...
-        ]
+                    [
+                      { "question": "<Question text>", "answer": "<Answer text>" },
+                      ...
+                    ]
 
-        Job Information:
-        - Job Position: ${data?.position}
-        - Job Description: ${data?.description}
-        - Years of Experience Required: ${data?.experience}
-        - Tech Stacks: ${data?.techStack}
+                    Job Information:
+                    - Job Position: ${data?.position}
+                    - Job Description: ${data?.description}
+                    - Years of Experience Required: ${data?.experience}
+                    - Tech Stacks: ${data?.techStack}
 
-        The questions should assess skills in ${data?.techStack} development and best practices, problem-solving, and experience handling complex requirements. Please format the output strictly as an array of JSON objects without any additional labels, code blocks, or explanations. Return only the JSON array with questions and answers.
-        `;
+                    The questions should assess skills in ${data?.techStack} development and best practices, problem-solving, and experience handling complex requirements. 
+
+                    Each answer should be detailed, technically accurate, and written in **plain text only**, without any markdown syntax (no bold, italics, bullet points, or numbered lists). Responses must be paragraph-based for consistent evaluation and comparison.
+
+                    Return only the JSON array with questions and answers.
+                    `;
 
     const aiResult = await chatSession.sendMessage(prompt);
     const cleanedResponse = cleanAiResponse(aiResult.response.text());
