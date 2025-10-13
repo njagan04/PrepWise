@@ -110,9 +110,11 @@ export const FormMockInterview = ({ initialData }: FormMockInterviewProps) => {
 
                     The questions should assess skills in ${data?.techStack} development and best practices, problem-solving, and experience handling complex requirements. 
 
-                    Each answer should be detailed, technically accurate, and written in **plain text only**, without any markdown syntax (no bold, italics, bullet points, or numbered lists). Responses must be paragraph-based for consistent evaluation and comparison.
+                    Each answer should be short, technically accurate, and written in **plain text only**, without any markdown syntax (no bold, italics, bullet points, or numbered lists). Responses must be paragraph-based for consistent evaluation and comparison and do not include any fillers.
 
                     Return only the JSON array with questions and answers.
+                    
+                    Also each question, answers should not contain any subpoint based context 
                     `;
 
     const aiResult = await chatSession.sendMessage(prompt);
